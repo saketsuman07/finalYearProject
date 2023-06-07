@@ -10,26 +10,28 @@ height= root.winfo_screenheight()
 #setting tkinter window size
 root.geometry("%dx%d" % (width, height))
 
-bg = ImageTk.PhotoImage(file="images/frnt.jpg")
+bg = ImageTk.PhotoImage(file="images/frnt2.jpg")
 
 
 #bg = Label(self.root,text="saket" ,image=self.bg).place(x=0, y=0, relwidth=1, relheight=1)
 my_canvas = Canvas(root, width=800, height=800)
 my_canvas.pack(fill=BOTH, expand=True)
-my_canvas.create_image(0, 0, image=bg, anchor="nw")
-my_canvas.create_text(650, 65, text="Recall based Pyhton", fill="white", font=("times new roman", 70))
+#my_canvas.create_image(0, 0, image=bg, anchor="nw")
+my_canvas.create_text(700, 85, text="Recall Based Authentication System", fill="black", font=("times new roman", 65))
 
 
-mnf=Frame(root,highlightbackground="blue", highlightthickness=2,bg="pink")
+mnf=Frame(root,highlightbackground="blue", highlightthickness=2,bg="lightblue")
 mnf.place(x=700,y=200,width=500,height=400)
 
 title = Label(mnf, text="Level Two", font=("times new roman", 20, "bold"),
-                      fg="green",bg="pink").place(x=170, y=10)
-mnf2=Frame(root,highlightbackground="green", highlightthickness=2,bg="pink")
+                      fg="Black",bg="lightblue").place(x=80, y=10)
+title2 = Label(mnf, text="(Select atleat 3 Images)", font=("times new roman", 10, "bold"),
+                      fg="Black",bg="lightblue").place(x=240, y=20)
+mnf2=Frame(root,highlightbackground="green", highlightthickness=2,bg="lightblue")
 mnf2.place(x=300,y=400,width=400,height=200)
 
 mnf3=Frame(root,highlightbackground="green"
-                                    "", highlightthickness=2,bg="pink")
+                                    "", highlightthickness=2,bg="lightblue")
 mnf3.place(x=300,y=200,width=400,height=200)
 #backend starts here
 
@@ -85,16 +87,51 @@ def get_buttons(i):
 #reset color password to =""
 def resetc():
     global password
-
-    password=""
+    if len(password) >= 1:
+        password = ""
+        show_message()
+    else:
+        if len(password) == 0:
+            show_messagee()
 
 
     return
+def show_messagee():
+    label = Label(root, text="Please select colors", font=("times new roman", 15, "bold"),
+                  background="lightblue",
+                  foreground="red")
+    label.place(x=530, y=560)
+    label.after(3000, label.destroy)
+def show_message():
+    label = Label(root, text="Reset Successfully",font=("times new roman", 15, "bold"),
+                     background="lightblue",
+                     foreground="red")
+    label.place(x=530,y=560)
+    label.after(3000, label.destroy)
+def show_message2():
+    label = Label(root, text="Reset Successfully",font=("times new roman", 15, "bold"),
+                     background="lightblue",
+                     foreground="red")
+    label.place(x=985,y=560)
+    label.after(3000, label.destroy)
+def show_message3():
+    label = Label(root, text="please select images",font=("times new roman", 15, "bold"),
+                     background="lightblue",
+                     foreground="red")
+    label.place(x=985,y=560)
+    label.after(3000, label.destroy)
 #reset image password to=""
 def reseti():
     global impassword
+    # print(impassword)
+    if len(impassword) >= 1:
+        impassword = ""
+        show_message2()
 
-    impassword=""
+    else:
+        if len(impassword) == 0:
+            show_message3()
+    return
 
 
     return
@@ -122,21 +159,23 @@ def reset():
 
 
 
-fname = Label(mnf3, text="First Name:", font=("times new roman", 15, "bold"), bg="pink",
-                      fg="gray").place(x=10, y=40)
+fname = Label(mnf3, text="First Name:", font=("times new roman", 15, "bold"), bg="lightblue",
+                      fg="black").place(x=10, y=40)
 fname=StringVar()
 txt_fname=Entry(mnf3,textvariable=fname,font=("times new roman",15),bg="lightgray")
 txt_fname.place(x=130,y=40,width=250)
 #lastname
-mail = Label(mnf3, text="Email:", font=("times new roman", 15, "bold"), bg="pink",
-              fg="gray").place(x=10, y=100)
+mail = Label(mnf3, text="Email:", font=("times new roman", 15, "bold"), bg="lightblue",
+              fg="black").place(x=10, y=100)
 mail=StringVar()
 txt_mail = Entry(mnf3,textvariable=mail, font=("times new roman", 15), bg="lightgray")
 txt_mail.place(x=130, y=100, width=250)
 
 
-title = Label(mnf2, text="Level One(select atleat 3 colors)", font=("times new roman", 15, "bold"),
-                      fg="green",bg="pink").place(x=25, y=10)
+title = Label(mnf2, text="Level One", font=("times new roman", 20, "bold"),
+                      fg="black",bg="lightblue").place(x=40, y=10)
+title2 = Label(mnf2, text="(Select atleast 3 Colors)", font=("times new roman", 10, "bold"),
+                      fg="black",bg="lightblue").place(x=200, y=20)
 
 red = Button(mnf2,bg="red",padx=5,height=2,width=10, bd=0,cursor="hand2",command=lambda t= "red": get_button(t)).place(x=10,y=60)
 green = Button(mnf2,bg="green",padx=5,height=2,width=10, bd=0,cursor="hand2",command=lambda t= "green": get_button(t)).place(x=105,y=60)
