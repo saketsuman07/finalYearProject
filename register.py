@@ -62,6 +62,7 @@ def col_data():
 
         messagebox.showerror("Error", "All Fields are required", parent=root)
 
+
     else:
         try:
             conn = sqlite3.connect('base.db')
@@ -86,6 +87,8 @@ def col_data():
             conn.close()
             messagebox.showinfo("success", "registerd succesfull", parent=root)
             reset()
+            olog()
+
 
 
 
@@ -118,26 +121,61 @@ def reset():
 #reset color password to =""
 def resetc():
     global password
+    if len(password)>=1:
+        password = ""
+        show_message()
+    else:
+        if len(password)==0:
+            show_messagee()
 
-    password=""
-    show_message()
+
+
+
+
 
 
     return
+def show_messagee():
+    label = Label(root, text="Please select colors", font=("times new roman", 15, "bold"),
+                  background="lightblue",
+                  foreground="red")
+    label.place(x=530, y=560)
+    label.after(3000, label.destroy)
 def show_message():
     label = Label(root, text="Reset Successfully",font=("times new roman", 15, "bold"),
                      background="lightblue",
                      foreground="red")
     label.place(x=530,y=560)
     label.after(3000, label.destroy)
+def show_message2():
+    label = Label(root, text="Reset Successfully",font=("times new roman", 15, "bold"),
+                     background="lightblue",
+                     foreground="red")
+    label.place(x=985,y=560)
+    label.after(3000, label.destroy)
+
+def show_message3():
+    label = Label(root, text="please select images",font=("times new roman", 15, "bold"),
+                     background="lightblue",
+                     foreground="red")
+    label.place(x=985,y=560)
+    label.after(3000, label.destroy)
+
+
 #reset image password to=""
+def olog():
+    root.destroy()
+    import login
 def reseti():
     global impassword
+    #print(impassword)
+    if len(impassword) >= 1:
+        impassword = ""
+        show_message2()
 
-    impassword=""
-    
-
-
+    else:
+        if len(impassword) == 0:
+            show_message3()
     return
 
 
@@ -155,14 +193,16 @@ def reseti():
 
 
 
-fname = Label(mnf3, text="First Name:", font=("times new roman", 15, "bold"), bg="pink",
-                      fg="gray").place(x=10, y=40)
+
+
+fname = Label(mnf3, text="First Name:", font=("times new roman", 15, "bold"), bg="lightblue",
+                      fg="black").place(x=10, y=40)
 fname=StringVar()
 txt_fname=Entry(mnf3,textvariable=fname,font=("times new roman",15),bg="lightgray")
 txt_fname.place(x=130,y=40,width=250)
 #lastname
-mail = Label(mnf3, text="Email:", font=("times new roman", 15, "bold"), bg="pink",
-              fg="gray").place(x=10, y=100)
+mail = Label(mnf3, text="Email:", font=("times new roman", 15, "bold"), bg="lightblue",
+              fg="black").place(x=10, y=100)
 mail=StringVar()
 txt_mail = Entry(mnf3,textvariable=mail, font=("times new roman", 15), bg="lightgray")
 txt_mail.place(x=130, y=100, width=250)
